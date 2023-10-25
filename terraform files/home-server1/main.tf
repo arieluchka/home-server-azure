@@ -70,12 +70,12 @@ resource "azurerm_network_interface" "server_nic" {
   }
 }
 
-resource "azurerm_linux_virtual_machine" "db-vm" {
+resource "azurerm_linux_virtual_machine" "server_vm" {
   depends_on = [  ]
   name                = "${var.server_name}-vm"
   resource_group_name = azurerm_resource_group.server_resource.name
   location            = var.location
-  size                = "Standard_B1s"
+  size                = "Standard_D3_v2"
   admin_username      = var.server_username
   admin_password = var.server_password
   disable_password_authentication = false
@@ -96,17 +96,17 @@ resource "azurerm_linux_virtual_machine" "db-vm" {
   }
 }
 
-# resource "azurerm_virtual_machine_extension" "test_script" {
-#   depends_on = [ azurerm_linux_virtual_machine.db-vm ]
-#   name = "ariel-db-script"
-#   virtual_machine_id = azurerm_linux_virtual_machine.db-vm.id
-#   publisher = "Microsoft.Azure.Extensions"
-#   type = "CustomScript"
-#   type_handler_version = "2.0"
+resource "azurerm_virtual_machine_extension" "test_script" {
+  depends_on = [ azurerm_linux_virtual_machine.server_vm ]
+  name = "ariel-db-script"
+  virtual_machine_id = azurerm_linux_virtual_machine.server_vm.id
+  publisher = "Microsoft.Azure.Extensions"
+  type = "CustomScript"
+  type_handler_version = "2.0"
 
-#   settings = <<SETTINGS
-#   {
-#     "script": "${base64encode(file("${path.module}//testscript.bash"))}"
-#   }
-#   SETTINGS  
-# }
+  settings = <<SETTINGS
+  {
+    "script": "${base64encode(file("${path.module}//setup-script.bash"))}"
+  }
+  SETTINGS  
+}
