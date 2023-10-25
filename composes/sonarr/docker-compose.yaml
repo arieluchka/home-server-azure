@@ -9,7 +9,7 @@ services:
       - TZ=Etc/UTC
     volumes:
       - /home-server/configs/sonarr/config:/config
-      - /home-server/large-media/jellyfin/media1:/tv #optional
+      - /home-server/large-media/jellyfin/media/shows:/tv #optional
       - /home-server/large-media/qbittorrent/downloads:/downloads #optional
     ports:
       - 8989:8989

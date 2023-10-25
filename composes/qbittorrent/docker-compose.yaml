@@ -7,12 +7,12 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - WEBUI_PORT=8080
+      - WEBUI_PORT=8085
     volumes:
       - /home-server/configs/qbittorrent/configs:/config
       - /home-server/large-media/qbittorrent/downloads:/downloads
     ports:
-      - 8085:8080
+      - 8085:8085
       - 6881:6881
       - 6881:6881/udp
     restart: unless-stopped

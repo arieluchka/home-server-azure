@@ -29,7 +29,7 @@ sudo mkdir /home-server/configs
 sudo mkdir /home-server/large-media
 
 # download composes from github
-sudo svn export https://github.com/arieluchka/home-server-azure/trunk/composes /home-server
+sudo svn export https://github.com/arieluchka/home-server-azure/trunk/composes /home-server/composes
 
 
 # JELLYFIN
@@ -39,17 +39,12 @@ sudo mkdir /home-server/configs/jellyfin
 sudo mkdir /home-server/configs/jellyfin/config
 sudo mkdir /home-server/configs/jellyfin/cache
 sudo mkdir /home-server/large-media/jellyfin/
-sudo mkdir /home-server/large-media/jellyfin/media1
+sudo mkdir /home-server/large-media/jellyfin/media
+sudo mkdir /home-server/large-media/jellyfin/media/shows
+sudo mkdir /home-server/large-media/jellyfin/media/movies
 
-# SONARR
-
-sudo mkdir /home-server/configs/sonarr
-sudo mkdir /home-server/configs/sonarr/config
-
-# PROWLARR
-
-sudo mkdir /home-server/configs/prowlarr
-
+# compose up
+sudo docker compose -f /home-server/large-media/jellyfin/docker-compose.yaml up -d
 
 # qbittorrent
 sudo mkdir /home-server/large-media/qbittorrent
@@ -57,4 +52,26 @@ sudo mkdir /home-server/configs/qbittorrent
 
 sudo mkdir /home-server/large-media/qbittorrent/downloads
 sudo mkdir /home-server/configs/qbittorrent/configs
+
+# compose up
+sudo docker compose -f /home-server/large-media/qbittorrent/docker-compose.yaml up -d
+
+# SONARR
+
+sudo mkdir /home-server/configs/sonarr
+sudo mkdir /home-server/configs/sonarr/config
+
+sudo docker compose -f /home-server/large-media/sonarr/docker-compose.yaml up -d
+
+
+# PROWLARR
+
+sudo mkdir /home-server/configs/prowlarr
+
+# compose up
+sudo docker compose -f /home-server/large-media/prowlarr/docker-compose.yaml up -d
+
+
+
+
 
