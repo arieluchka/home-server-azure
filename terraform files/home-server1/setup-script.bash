@@ -1,7 +1,12 @@
 #!/bin/bash
 
+# folder structure
+configpaths=/home-server/configs
+mediapaths=/home-server/media
+startupcomposes=/home-server/composes
 
-
+$configpaths
+$mediapaths
 
 
 
@@ -29,39 +34,38 @@ sudo mkdir /home-server/configs
 sudo mkdir /home-server/large-media
 
 # download composes from github
-sudo svn export https://github.com/arieluchka/home-server-azure/trunk/composes /home-server/composes
+sudo svn export https://github.com/arieluchka/home-server-azure/trunk/composes $startupcomposes
 
 
 # JELLYFIN
 # jellyfin folder creation
 
-sudo mkdir /home-server/configs/jellyfin
-sudo mkdir /home-server/configs/jellyfin/config
-sudo mkdir /home-server/configs/jellyfin/cache
-sudo mkdir /home-server/large-media/jellyfin/
-sudo mkdir /home-server/large-media/jellyfin/media
-sudo mkdir /home-server/large-media/jellyfin/media/shows
-sudo mkdir /home-server/large-media/jellyfin/media/movies
+sudo mkdir $configpaths/jellyfin
+sudo mkdir $configpaths/jellyfin/config
+sudo mkdir $configpaths/jellyfin/cache
+sudo mkdir $mediapaths/jellyfin/
+sudo mkdir $mediapaths/jellyfin/media
+sudo mkdir $mediapaths/jellyfin/media/shows
+sudo mkdir $mediapaths/jellyfin/media/movies
 
 # compose up
-sudo docker compose -f /home-server/large-media/jellyfin/docker-compose.yaml up -d
+sudo docker compose -f $startupcomposes/jellyfin/docker-compose.yaml up -d
 
-# qbittorrent
-sudo mkdir /home-server/large-media/qbittorrent
-sudo mkdir /home-server/configs/qbittorrent
+# QBITTORRENT
+sudo mkdir $mediapaths/qbittorrent
+sudo mkdir $mediapaths/qbittorrent/downloads
 
-sudo mkdir /home-server/large-media/qbittorrent/downloads
-sudo mkdir /home-server/configs/qbittorrent/configs
+sudo mkdir $configpaths/qbittorrent
+sudo mkdir $configpaths/qbittorrent/configs
 
 # compose up
-sudo docker compose -f /home-server/large-media/qbittorrent/docker-compose.yaml up -d
+sudo docker compose -f $startupcomposes/qbittorrent/docker-compose.yaml up -d
 
 # SONARR
-
 sudo mkdir /home-server/configs/sonarr
 sudo mkdir /home-server/configs/sonarr/config
 
-sudo docker compose -f /home-server/large-media/sonarr/docker-compose.yaml up -d
+sudo docker compose -f $startupcomposes/sonarr/docker-compose.yaml up -d
 
 
 # PROWLARR
@@ -69,9 +73,12 @@ sudo docker compose -f /home-server/large-media/sonarr/docker-compose.yaml up -d
 sudo mkdir /home-server/configs/prowlarr
 
 # compose up
-sudo docker compose -f /home-server/large-media/prowlarr/docker-compose.yaml up -d
+sudo docker compose -f $startupcomposes/prowlarr/docker-compose.yaml up -d
 
+# JELLYSEER
 
+sudo mkdir $configpaths/jellyseer
 
+sudo docker compose -f $startupcomposes/jellyseer/docker-compose.yaml up -d
 
 
