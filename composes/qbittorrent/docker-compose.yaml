@@ -10,7 +10,7 @@ services:
       - WEBUI_PORT=8085
     volumes:
       - /home-server/configs/qbittorrent/configs:/config
-      - /home-server/large-media/qbittorrent/downloads:/downloads
+      - /home-server/media/qbittorrent/downloads:/downloads
     ports:
       - 8085:8085
       - 6881:6881

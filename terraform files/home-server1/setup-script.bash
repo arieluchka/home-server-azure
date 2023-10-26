@@ -30,8 +30,8 @@ sudo apt-get install subversion -y
 
 # create folder structure for config saves
 sudo mkdir /home-server
-sudo mkdir /home-server/configs
-sudo mkdir /home-server/large-media
+sudo mkdir $configpaths
+sudo mkdir $mediapaths
 
 # download composes from github
 sudo svn export https://github.com/arieluchka/home-server-azure/trunk/composes $startupcomposes
