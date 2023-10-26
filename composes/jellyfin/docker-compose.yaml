@@ -8,8 +8,8 @@ services:
     volumes:
       - /home-server/configs/jellyfin/config:/config
       - /home-server/configs/jellyfin/cache:/cache
-      - /home-server/large-media/jellyfin/media/movies:/media/movies
-      - /home-server/large-media/jellyfin/media/shows:/media/shows
+      - /home-server/media/jellyfin/media/movies:/media/movies
+      - /home-server/media/jellyfin/media/shows:/media/shows
     restart: 'unless-stopped'
     # Optional - alternative address used for autodiscovery
     environment:

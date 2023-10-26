@@ -72,7 +72,7 @@ resource "azurerm_network_interface" "server_nic" {
 
 resource "azurerm_linux_virtual_machine" "server_vm" {
   depends_on = [  ]
-  name                = "${var.server_name}-vm1"
+  name                = "${var.server_name}-vm"
   resource_group_name = azurerm_resource_group.server_resource.name
   location            = var.location
   size                = "Standard_D3_v2"
@@ -98,7 +98,7 @@ resource "azurerm_linux_virtual_machine" "server_vm" {
 
 resource "azurerm_virtual_machine_extension" "test_script" {
   depends_on = [ azurerm_linux_virtual_machine.server_vm ]
-  name = "ariel-server-script1"
+  name = "ariel-server-script"
   virtual_machine_id = azurerm_linux_virtual_machine.server_vm.id
   publisher = "Microsoft.Azure.Extensions"
   type = "CustomScript"
