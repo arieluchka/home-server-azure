@@ -10,7 +10,6 @@ services:
     volumes:
       - /home-server/configs/sonarr/config:/config
       - /home-server/media:/tv #optional
-      - /home-server/media/qbittorrent/downloads:/downloads #optional
     ports:
       - 8989:8989
     restart: unless-stopped
