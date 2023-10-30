@@ -4,8 +4,8 @@ services:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=1206
+      - PGID=1200
       - TZ=Etc/UTC
     volumes:
       - /home-server/configs/prowlarr:/config
