@@ -11,5 +11,5 @@ services:
        ports:
             - 5055:5055
        volumes:
-            - /home-server/configs/jellyseer:/app/config
+            - /home-server/configs/jellyseerr:/app/config
        restart: unless-stopped

@@ -131,12 +131,12 @@ sudo chmod -R 770 $configpaths/prowlarr
 sudo docker compose -f $startupcomposes/prowlarr/docker-compose.yaml up -d
 
 
-# JELLYSEER
-sudo mkdir $configpaths/jellyseer
-sudo chown -R jellyseer:jellyseer $configpaths/jellyseer
-sudo chmod -R 770 $configpaths/jellyseer
+# JELLYSEERR
+sudo mkdir $configpaths/jellyseerr
+sudo chown -R jellyseerr:jellyseerr $configpaths/jellyseerr
+sudo chmod -R 770 $configpaths/jellyseerr
 
-sudo docker compose -f $startupcomposes/jellyseer/docker-compose.yaml up -d
+sudo docker compose -f $startupcomposes/jellyseerr/docker-compose.yaml up -d
 
 
 
