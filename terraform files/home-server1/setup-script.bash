@@ -72,7 +72,7 @@ fi
 
 
 
-
+# FIRST SPACE (media server)
 
 # JELLYFIN
 # jellyfin folder creation
@@ -139,14 +139,23 @@ sudo chmod -R 770 $configpaths/jellyseerr
 sudo docker compose -f $startupcomposes/jellyseerr/docker-compose.yaml up -d
 
 
-
-# change ownership to media
-
-
-
-# change ownership to configs
+# crontab to save configs
+# echo "0,15,30,45 * * * * cp -r -f /home-server/configs /mnt/home-server-save" | sudo crontab -u root -
 
 
+
+# SECOND SPACE (maybe different vm for it later?)
+secondserverconfigpaths=/home-server/configs
+
+# create users and groups
+sudo useradd -U -u 1301 grocy
+
+# GROCY
+sudo mkdir $secondserverconfigpaths/grocy
+sudo chown -R grocy:grocy $secondserverconfigpaths/grocy
+sudo chmod -R 770 $secondserverconfigpaths/grocy
+
+sudo docker compose -f $startupcomposes/grocy/docker-compose.yaml up -d
 
 
 
