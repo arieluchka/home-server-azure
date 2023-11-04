@@ -4,6 +4,8 @@
 configpaths=/home-server/configs
 mediapaths=/home-server/media
 startupcomposes=/home-server/composes
+upload=yes
+
 
 # MOUNT CLOUD SAVE
 ################
@@ -61,6 +63,14 @@ sudo mkdir $mediapaths
 
 # download composes from github
 sudo svn export https://github.com/arieluchka/home-server-azure/trunk/composes $startupcomposes
+
+
+if [ $upload = yes ]
+then
+    sudo cp -r -f /mnt/home-server-save/configs /home-server
+fi
+
+
 
 
 
@@ -131,9 +141,8 @@ sudo docker compose -f $startupcomposes/jellyseer/docker-compose.yaml up -d
 
 
 # change ownership to media
-sudo chown -R root:media-server /home-server/media/
-sudo chown -R jellyfin /home-server/media/jellyfin/
-sudo chown -R qbit /home-server/media/qbittorrent/
+
+
 
 # change ownership to configs
 
@@ -142,4 +151,4 @@ sudo chown -R qbit /home-server/media/qbittorrent/
 
 
 # crontab to save configs
-echo "0,15,30,45 * * * * cp -r /home-server/configs/ /mnt/home-server-save" | sudo crontab -u root -
+# echo "0,15,30,45 * * * * cp -r -f /home-server/configs /mnt/home-server-save" | sudo crontab -u root -

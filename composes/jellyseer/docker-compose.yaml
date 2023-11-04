@@ -3,6 +3,7 @@ services:
     jellyseerr:
        image: fallenbagel/jellyseerr:latest
        container_name: jellyseerr
+       network_mode: 'host'
        user: 1205:1200
        environment:
             - LOG_LEVEL=debug
