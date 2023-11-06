@@ -10,7 +10,7 @@ services:
       - TZ=Etc/UTC
     volumes:
       - /home-server/configs/radarr/config:/config
-      - /home-server/media:/movies #optional
+      - /home-server-media/media:/movies #optional
     ports:
       - 7878:7878
     restart: unless-stopped

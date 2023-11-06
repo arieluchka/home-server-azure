@@ -8,12 +8,12 @@ services:
     volumes:
       - /home-server/configs/jellyfin/config:/config
       - /home-server/configs/jellyfin/cache:/cache
-      - /home-server/media/jellyfin/media/movies:/media/movies
-      - /home-server/media/jellyfin/media/shows:/media/shows
+      - /home-server-media/media/jellyfin/media/movies:/media/movies
+      - /home-server-media/media/jellyfin/media/shows:/media/shows
     restart: 'unless-stopped'
     # Optional - alternative address used for autodiscovery
     environment:
-      - JELLYFIN_PublishedServerUrl=http://example.com
+      - JELLYFIN_PublishedServerUrl=http://localhost.com
     # Optional - may be necessary for docker healthcheck to pass if running in host network mode
     extra_hosts:
       - "host.docker.internal:host-gateway"

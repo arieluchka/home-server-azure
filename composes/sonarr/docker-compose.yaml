@@ -10,7 +10,7 @@ services:
       - TZ=Etc/UTC
     volumes:
       - /home-server/configs/sonarr/config:/config
-      - /home-server/media:/tv #optional
+      - /home-server-media/media:/tv #optional
     ports:
       - 8989:8989
     restart: unless-stopped
